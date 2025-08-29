@@ -6,23 +6,20 @@
 #   cd {R_library_repository}
 #   ls -l | tr -s ' ' | cut -d ' ' -f 9 > R.libraries
 #
-# Setup:
-#   If this is for a personal repository in a home directory, set R_LIBS_USER
-#   Otherwise leave R_LIBS_USER unset
-#
 # Run with:
-#   Rscript install.R {manifest}
+#   Rscript install.R {manifest} {path}
 #
 
 library(readr)
 
 args = commandArgs(trailingOnly=TRUE)
 
-if (length(args) != 1) {
-    stop("Usage: Rscript install.R {manifest}", call.=FALSE)
+if (length(args) != 2) {
+    stop("Usage: Rscript install.R {manifest} {path}", call.=FALSE)
 }
 
 manifest <- args[1]
+path <- args[2]
 
 if (!require("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
@@ -36,7 +33,7 @@ while (TRUE) {
         break
     }
 
-    BiocManager::install(line,force=TRUE)
+    BiocManager::install(line,lib=path,force=TRUE)
 
     offset <- offset + 1
 }
