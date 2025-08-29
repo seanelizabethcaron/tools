@@ -26,7 +26,7 @@ manifest <- args[1]
 
 if (!require("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
-BiocManager::install(version = "3.17")
+BiocManager::install(version = "3.21")
 
 offset <- 0
 
