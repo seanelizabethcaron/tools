@@ -10,9 +10,12 @@ REPORT_FILE=`/bin/tempfile -p disku`
 # Handle different date output formats in different versions of coreutils
 COREUTILS_VER=`/bin/date --version | /usr/bin/head -1 | /usr/bin/cut -d " " -f 4`
 
-if (( $(echo "$COREUTILS_VER >= 8.30" | /usr/bin/bc -l) )); then
+if (( $(echo "$COREUTILS_VER >= 8.30 && $COREUTILS_VER < 8.32" | /usr/bin/bc -l) )); then
   MONTH=`/bin/date | /usr/bin/cut -d " " -f 3`
   YEAR=`/bin/date | /usr/bin/cut -d " " -f 4`
+elif (( $(echo "$COREUTILS_VER >= 8.32" | /usr/bin/bc -l) )); then
+  MONTH=`/bin/date | /usr/bin/cut -d " " -f 2`
+  YEAR=`/bin/date | /usr/bin/cut -d " " -f 8`
 else
   MONTH=`/bin/date | /usr/bin/cut -d " " -f 2`
   YEAR=`/bin/date | /usr/bin/cut -d " " -f 7`
