@@ -153,6 +153,11 @@ Input should be a file containing a list of packages, one package per line, prep
 ```
 dpkg --get-selections | grep -v deinstall | cut -f 1 > input.selections
 ```
+
+#### setup_sftp_chroot.pl
+
+Create sshd_config directives for a list of chroot user accounts previously using the scponlyc shell mechanism.
+
 #### slurm_node_trouble_report.pl
 
 Insert into cron to send an email report of all Slurm nodes in DOWN or DRAIN states.
