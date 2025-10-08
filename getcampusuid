@@ -13,7 +13,7 @@ if (len(sys.argv) != 2):
 # Uniqname to do a query against
 uniqname = sys.argv[1]
 
-l = ldap.initialize('ldap://' + campus_ldap_host + ':389')
+l = ldap.initialize('ldaps://' + campus_ldap_host + ':636')
 l.protocol_version = ldap.VERSION3
 baseDN = campus_ldap_basedn
 searchScope = ldap.SCOPE_SUBTREE
