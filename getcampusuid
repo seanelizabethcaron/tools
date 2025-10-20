@@ -5,6 +5,8 @@ import sys,os,time,ldap
 
 campus_ldap_host = 'ldap.umich.edu'
 campus_ldap_basedn = 'ou=People,dc=umich,dc=edu'
+campus_ldap_dn = 'FILLMEIN'
+campus_ldap_password = 'FILLMEIN'
 
 if (len(sys.argv) != 2):
   print('Usage: ' + sys.argv[0] + ' [uniqname]')
@@ -14,6 +16,7 @@ if (len(sys.argv) != 2):
 uniqname = sys.argv[1]
 
 l = ldap.initialize('ldaps://' + campus_ldap_host + ':636')
+l.simple_bind_s(campus_ldap_dn, campus_ldap_password)
 l.protocol_version = ldap.VERSION3
 baseDN = campus_ldap_basedn
 searchScope = ldap.SCOPE_SUBTREE
