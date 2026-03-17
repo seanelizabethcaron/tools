@@ -17,7 +17,7 @@ bk_host=`/bin/hostname`
 bk_date=`/bin/date --iso-8601`
 
 # Backup destination directory
-bk_dest_root=/net/ddn/backup2/ldap.backups
+bk_dest_root=/net/ddn/backup4/ldap.backups
 bk_dest_dir=${bk_dest_root}/${bk_date}
 
 # Backup name
