@@ -41,7 +41,7 @@ puppet_root_backup_file=/tmp/${bk_name}_root_backup.tar
 /bin/cp $puppet_root_backup_file $bk_dest_dir
 
 # Make another copy of the data to the cloud
-/usr/bin/gcloud auth activate-service-account --key-file /root/MY-GOOGLE-KEYFILE.json
+/usr/bin/gcloud auth activate-service-account --key-file $GOOGLE_APPLICATION_CREDENTIALS
 /usr/bin/gsutil cp -r $bk_dest_dir gs://puppet-backups
 
 # Clean up
