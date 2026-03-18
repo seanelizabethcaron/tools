@@ -19,7 +19,7 @@ Wraps up all steps required to perform a full Gitlab backup to a configured dest
 
 #### backup_ldap.sh
 
-Back up LDAP cn=config and directory databases to a configured destination and to the cloud.
+Back up OpenLDAP cn=config and directory databases to a configured destination and to the cloud.
 
 #### backup_puppet.sh
 
