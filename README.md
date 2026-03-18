@@ -17,6 +17,10 @@ Given a list of AFS volumes, migrate them from source server and partition to de
 
 Wraps up all steps required to perform a full Gitlab backup to a configured destination and to the cloud.
 
+#### backup_ldap.sh
+
+Back up LDAP cn=config and directory databases to a configured destination and to the cloud.
+
 #### backup_puppet.sh
 
 Wraps up all steps required to perform a Puppet master server backup to a configured destination and to the cloud.
