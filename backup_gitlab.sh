@@ -9,6 +9,7 @@
 #
 
 export GOOGLE_APPLICATION_CREDENTIALS="/root/MY-GOOGLE-KEYFILE.json"
+export GPG_SECRET="/root/.gpg-secret"
 
 # Our hostname
 bk_host=`/bin/hostname`
@@ -26,15 +27,17 @@ bk_name=${bk_host}_${bk_date}
 # Run the Gitlab backup
 /usr/bin/gitlab-backup create STRATEGY=copy BACKUP=$bk_name CRON=1
 gitlab_backup_file=/var/opt/gitlab/backups/${bk_name}_gitlab_backup.tar
+cat $GPG_SECRET | /usr/bin/gpg -c --passphrase-fd 0 --batch --yes $gitlab_backup_file
 
 # Run the Gitlab /etc/gitlab backup
 gitlab_etc_backup_file=/tmp/${bk_name}_gitlab_etc_backup.tar
 /bin/tar -c -p -f $gitlab_etc_backup_file /etc/gitlab >/dev/null 2>&1
+cat $GPG_SECRET | /usr/bin/gpg -c --passphrase-fd 0 --batch --yes $gitlab_etc_backup_file
 
 # Copy data to the backup destination
 /bin/mkdir -p $bk_dest_dir
-/bin/cp $gitlab_backup_file $bk_dest_dir
-/bin/cp $gitlab_etc_backup_file $bk_dest_dir
+/bin/cp $gitlab_backup_file.gpg $bk_dest_dir
+/bin/cp $gitlab_etc_backup_file.gpg $bk_dest_dir
 
 # Make another copy of the data to the cloud
 /usr/bin/gcloud auth activate-service-account --key-file $GOOGLE_APPLICATION_CREDENTIALS
@@ -42,5 +45,8 @@ gitlab_etc_backup_file=/tmp/${bk_name}_gitlab_etc_backup.tar
 
 # Clean up
 /bin/rm -rf $gitlab_backup_file
+/bin/rm -rf $gitlab_backup_file.gpg
 /bin/rm -rf $gitlab_etc_backup_file
+/bin/rm -rf $gitlab_etc_backup_file.gpg
+
 
