@@ -54,4 +54,4 @@ cat $GPG_SECRET | /usr/bin/gpg -c --passphrase-fd 0 --batch --yes $puppet_root_b
 /bin/rm -rf $puppet_opt_backup_file
 /bin/rm -rf $puppet_opt_backup_file.gpg
 /bin/rm -rf $puppet_root_backup_file
-/bin/rm -rf $puppet_root_backup_file
+/bin/rm -rf $puppet_root_backup_file.gpg
