@@ -36,7 +36,7 @@ while (TRUE) {
 
     line_2 = paste("package:", line, sep="")
 
-    detach(line_2, character.only = TRUE)
+    detach(line_2, character.only = TRUE, unload = TRUE, force = TRUE)
 
     offset <- offset + 1
 }
