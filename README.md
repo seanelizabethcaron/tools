@@ -166,6 +166,10 @@ Create sshd_config directives for a list of chroot user accounts previously usin
 
 Insert into cron to send an email report of all Slurm nodes in DOWN or DRAIN states.
 
+#### testlibs.R
+
+Test loadability of large numbers of R libraries from a list.
+
 #### zerodrives.sh
 
 Clear MD RAID superblock and zero a small initial extent of all attached JBOD drives.
