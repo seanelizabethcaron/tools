@@ -4,7 +4,7 @@
 #
 # Prep input with:
 #   cd {R_library_repository}
-#   ls -l | tr -s ' ' | cut -d ' ' -f 9 > R.libraries
+#   ls -l | tr -s ' ' | cut -d ' ' -f 9 | grep -v 00LOCK | tail -n +2 > R.libraries
 #
 # Run with:
 #   Rscript install.R {manifest} {path}
