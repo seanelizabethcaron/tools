@@ -23,7 +23,7 @@ path <- args[2]
 
 if (!require("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
-BiocManager::install(version = "3.21")
+BiocManager::install(version = "3.23")
 
 offset <- 0
 
